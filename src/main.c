@@ -31,7 +31,7 @@ int _write(int fd, char *ptr, int len) {
  */
 
 int main(void) {
-    // HAL Documentation - p9
+    // This should always be called.
     HAL_Init();
 
     /* RCC - Reset and Clock Control
@@ -95,6 +95,7 @@ int main(void) {
     /*
      * Configure UART
      */
+
     // Enable USART2 Clock
     __HAL_RCC_USART2_CLK_ENABLE();
 
@@ -113,7 +114,6 @@ int main(void) {
     HAL_GPIO_Init(GPIOA, &gpio_init);
 
     // Configure UART on GPIO
-
     guart.Instance = USART2;
     guart.Init.BaudRate = 115200;
     guart.Init.WordLength = UART_WORDLENGTH_8B;

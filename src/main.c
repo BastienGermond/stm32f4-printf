@@ -18,9 +18,12 @@ int _write(int fd, char *ptr, int len) {
     if (fd == STDOUT_FILENO || fd == STDERR_FILENO) {
         hstatus = HAL_UART_Transmit(&guart, (uint8_t *)ptr, len, HAL_MAX_DELAY);
         if (hstatus == HAL_OK)
+        {
             return len;
-        else
-            return EIO;
+        } else {
+            errno = EIO;
+            return -1;
+        }
     }
     errno = EBADF;
     return -1;
